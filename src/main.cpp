@@ -484,7 +484,7 @@ void NORMALKNN(int neighbours, int tests, std::vector<std::bitset<TRAIN_SIZE>> &
         }
     }
 
-    std::cerr << "Comenzando kNN para el testing dataset" << std::endl;
+    /*std::cerr << "Comenzando kNN para el testing dataset" << std::endl;
 
     Timer kNNTestingTimer("kNN Testing Timer");
 
@@ -495,7 +495,7 @@ void NORMALKNN(int neighbours, int tests, std::vector<std::bitset<TRAIN_SIZE>> &
         if (i % 100 == 0) {
             std::cerr << "Progreso de kNN sobre el testing dataset: " << i << "/" << testingSet.rows() << std::endl;
         }
-    }
+    }*/
 }
 
 std::string basename(std::string const& pathname) {

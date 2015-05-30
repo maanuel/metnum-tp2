@@ -39,7 +39,7 @@ const DistanceF L2 = DistanceF([](const Matrix &A, int i0, const Matrix &B, int 
         output += std::pow(A(i0, j) - B(i1, j), 2.0);
     }
 
-    return std::sqrt(output);
+    return output;
 });
 
 const Norm N2 = Norm([](const std::vector<double> &v) -> double {
