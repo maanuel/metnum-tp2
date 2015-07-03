@@ -193,6 +193,8 @@ void PCAKNN(std::string path, std::string output, std::string append, int alpha,
         Timer timer("kNN Partition Timer");
         std::cerr << "Calculando promedio de variables para la particion " << k << std::endl;
 
+        //DESDE ACA EMPEZAMOS A TENER EN CUENTA EL TIMER DE PCA
+        Timer preprocesado("Preprocesado PCA");
         Matrix mean(1, DIM*DIM);
 
         Timer PCAMean("PCA Mean CV");
@@ -306,6 +308,8 @@ void PCAKNN(std::string path, std::string output, std::string append, int alpha,
         Matrix testChangeBasis(fTest.first.rows(), alpha);
         dimensionReduction(fTest.first, testChangeBasis, eigenPair);
 
+        preprocesado.stop();
+
         // ya tenemos los vectores en sus respectivos cambios de bases
         Counter hit("kNN Hit CV");
         Counter miss("kNN Miss CV");
@@ -330,10 +334,14 @@ void PCAKNN(std::string path, std::string output, std::string append, int alpha,
             }
         }
 
+        kNNPartitionTimer.stop();
+
         std::cerr << std::endl;
     }
 
-    Matrix mean(1, DIM*DIM);
+    // *********************************** CASO REAL ********************************
+    
+    /*Matrix mean(1, DIM*DIM);
 
     Timer PCAMean("PCA Mean");
 
@@ -458,7 +466,7 @@ void PCAKNN(std::string path, std::string output, std::string append, int alpha,
         }
     }
 
-    std::cerr << std::endl;
+    std::cerr << std::endl;*/
 }
 
 void NORMALKNN(int neighbours, int tests, std::vector<std::bitset<TRAIN_SIZE>> &masks,
@@ -498,6 +506,8 @@ void NORMALKNN(int neighbours, int tests, std::vector<std::bitset<TRAIN_SIZE>> &
             }
         }
 
+        kNNPartitionTimer.stop();
+        
         std::cerr << std::endl;
     }
 
